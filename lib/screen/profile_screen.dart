@@ -4,7 +4,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:vrititech/constants/color_constant.dart';
+import 'package:vrititech/constants/image_constant.dart';
 import 'package:vrititech/utils/size.dart';
+import 'package:vrititech/utils/storage.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -15,16 +17,26 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
   final user = FirebaseAuth.instance.currentUser;
-
   File? _image;
-
   final ImagePicker picker = ImagePicker();
+
+  @override
+  void initState() {
+    readImage();
+    super.initState();
+  }
+
+  readImage() async {
+    await readProfileImage();
+  }
 
   void chooseGalleryImage() async {
     final XFile? image = await picker.pickImage(source: ImageSource.gallery);
     if (image != null) {
       setState(() {
         _image = File(image.path);
+        ProfileImage.image = _image;
+        writeProfileImage(ProfileImage.image!);
       });
     }
   }
@@ -34,6 +46,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
     if (image != null) {
       setState(() {
         _image = File(image.path);
+        ProfileImage.image = _image;
+        writeProfileImage(ProfileImage.image!);
       });
     }
   }
@@ -65,10 +79,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
               Stack(
                 alignment: Alignment.bottomRight,
                 children: [
-                  _image != null
+                  ProfileImage.image != null
                       ? CircleAvatar(
                           radius: SizeConfig.screenWidth! * 0.15,
-                          backgroundImage: FileImage(_image!),
+                          backgroundImage: FileImage(ProfileImage.image!),
                         )
                       : CircleAvatar(
                           radius: SizeConfig.screenWidth! * 0.15,
@@ -119,7 +133,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     },
                     icon: Icon(
                       Icons.camera_alt,
-                      color: _image != null ? Colors.white : primaryColor,
+                      color: ProfileImage.image != null
+                          ? Colors.white
+                          : primaryColor,
                     ),
                   ),
                 ],
