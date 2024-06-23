@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "572738572418",
+    "project_id": "vrittech-bacca",
+    "storage_bucket": "vrittech-bacca.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:572738572418:android:162724806864e6715ce49b",
+        "android_client_info": {
+          "package_name": "com.example.vrititech"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCH9ycmuyHWJdpHe95se1emr3TF1WEJkvU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

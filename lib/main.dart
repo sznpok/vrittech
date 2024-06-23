@@ -1,12 +1,17 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:vrititech/bloc/bottom_nav_bar_bloc/home_page_bloc.dart';
-import 'package:vrititech/utils/size.dart';
-import 'package:vrititech/utils/theme_data.dart';
 
-import 'screen/bottom_nav_bar_screen.dart';
+import '/bloc/bottom_nav_bar_bloc/home_page_bloc.dart';
+import '/screen/splash_screen.dart';
+import '/utils/size.dart';
+import '/utils/theme_data.dart';
+import 'firebase_options.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -19,10 +24,10 @@ class MyApp extends StatelessWidget {
     return BlocProvider(
       create: (context) => HomePageBloc(),
       child: MaterialApp(
-        title: 'Flutter Demo',
+        title: 'VritTechnologies',
         theme: lightThemeData(context),
         debugShowCheckedModeBanner: false,
-        home: const BottomNavBarScreen(),
+        home: const SplashScreen(),
       ),
     );
   }

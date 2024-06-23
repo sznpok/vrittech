@@ -1,4 +1,6 @@
 class ImageConstant {
-  static String baseImage = "assets/image";
-  static String logoImage = "$baseImage/logo.png";
+  static String baseImage = "assets";
+  static String logoImage = "$baseImage/logo.svg";
+  static String appleImage = "$baseImage/apple.svg";
+  static String googleImage = "$baseImage/google.svg";
 }
