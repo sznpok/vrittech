@@ -20,7 +20,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
     // Delayed navigation to the second screen
     Future.delayed(
-      const Duration(seconds: 5),
+      const Duration(seconds: 2),
       () {
         Navigator.of(context).pushAndRemoveUntil(
           MaterialPageRoute(builder: (context) => const Wrapper()),
